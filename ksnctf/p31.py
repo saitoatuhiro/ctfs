@@ -12,7 +12,7 @@ if __name__ == '__main__':
     signature = res.cookies['signature']
 
     hash_res = hashpumpy.hashpump(signature, ship, ',10', 21)
-    cookies = {'ship': str(hash_res[1])[2:][:-1].replace('\\x', '%'), 'signature': hash_res[0]}
+    cookies = {'ship': str(hash_res[1])[2:-1].replace('\\x', '%'), 'signature': hash_res[0]}
 
     res = requests.get(url=url, headers=headers, cookies=cookies, proxies=proxies)
     if res.text.find('FLAG') > -1:
